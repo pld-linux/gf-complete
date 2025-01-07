@@ -1,0 +1,63 @@
+--- gf-complete-master/configure.ac~	2019-08-19 13:28:51.000000000 +0200
++++ gf-complete-master/configure.ac	2025-01-07 23:19:41.886663985 +0100
+@@ -3,9 +3,6 @@
+ # FIXME - add project url as the last argument
+ AC_INIT(gf-complete, 1.0)
+ 
+-# Override default CFLAGS
+-: ${CFLAGS="-Wall -Wpointer-arith -O3 -g"}
+-
+ AC_PREREQ([2.61])
+ 
+ AM_INIT_AUTOMAKE([no-dependencies foreign parallel-tests])
+--- gf-complete-master/src/Makefile.am~	2019-08-19 13:28:51.000000000 +0200
++++ gf-complete-master/src/Makefile.am	2025-01-07 23:22:27.086664066 +0100
+@@ -11,13 +11,13 @@
+ # with SIMD_FLAGS, this static library will get linked into gf_complete.so
+ noinst_LTLIBRARIES = libgf_util.la
+ libgf_util_la_SOURCES = gf_method.c
+-libgf_util_la_CFLAGS = -O3 -fPIC -Wsign-compare
++libgf_util_la_CFLAGS = -fPIC -Wsign-compare
+ 
+ # we narrowly use SIMD_FLAGS for code that needs it
+ lib_LTLIBRARIES = libgf_complete.la
+ libgf_complete_la_SOURCES = gf.c gf_wgen.c gf_w4.c gf_w8.c gf_w16.c gf_w32.c \
+           gf_w64.c gf_w128.c gf_rand.c gf_general.c gf_cpu.c
+-libgf_complete_la_CFLAGS = -O3 $(SIMD_FLAGS) -fPIC -Wsign-compare
++libgf_complete_la_CFLAGS = $(SIMD_FLAGS) -fPIC -Wsign-compare
+ libgf_complete_la_LIBADD = libgf_util.la
+ 
+ if HAVE_NEON
+--- gf-complete-master/tools/Makefile.am~	2019-08-19 13:28:51.000000000 +0200
++++ gf-complete-master/tools/Makefile.am	2025-01-07 23:23:10.876664081 +0100
+@@ -1,7 +1,7 @@
+ # GF-Complete 'tools' AM file
+ 
+ AM_CPPFLAGS = -I$(top_builddir)/include -I$(top_srcdir)/include
+-AM_CFLAGS = -O3 -fPIC
++AM_CFLAGS = -fPIC
+ 
+ bin_PROGRAMS = gf_mult gf_div gf_add gf_time gf_methods gf_poly gf_inline_time
+ 
+--- gf-complete-master/test/Makefile.am~	2019-08-19 13:28:51.000000000 +0200
++++ gf-complete-master/test/Makefile.am	2025-01-07 23:23:32.843330753 +0100
+@@ -1,7 +1,7 @@
+ # GF-Complete 'test' AM file
+ 
+ AM_CPPFLAGS = -I$(top_builddir)/include -I$(top_srcdir)/include
+-AM_CFLAGS = -O3 -fPIC
++AM_CFLAGS = -fPIC
+ 
+ bin_PROGRAMS = gf_unit 
+ 
+--- gf-complete-master/examples/Makefile.am~	2019-08-19 13:28:51.000000000 +0200
++++ gf-complete-master/examples/Makefile.am	2025-01-07 23:23:53.209997432 +0100
+@@ -1,7 +1,7 @@
+ # GF-Complete 'examples' AM file
+ 
+ AM_CPPFLAGS = -I$(top_builddir)/include -I$(top_srcdir)/include
+-AM_CFLAGS = -O3 $(SIMD_FLAGS) -fPIC
++AM_CFLAGS = $(SIMD_FLAGS) -fPIC
+ 
+ bin_PROGRAMS = gf_example_1 gf_example_2 gf_example_3 gf_example_4 \
+                gf_example_5 gf_example_6 gf_example_7
