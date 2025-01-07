@@ -68,6 +68,10 @@ Statyczna biblioteka %{name}.
 %{__autoheader}
 %{__automake}
 %configure \
+%ifarch %{ix86}
+	--disable-sse \
+	--disabl-avx \
+%endif
 	%{!?with_static_libs:--disable-static}
 %{__make}
 
