@@ -70,7 +70,7 @@ Statyczna biblioteka %{name}.
 %configure \
 %ifarch %{ix86}
 	--disable-sse \
-	--disabl-avx \
+	--disable-avx \
 %endif
 	%{!?with_static_libs:--disable-static}
 %{__make}
