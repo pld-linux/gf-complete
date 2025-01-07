@@ -8,7 +8,7 @@
 Summary:	A Comprehensive Open Source Library for Galois Field Arithmetic
 Name:		gf-complete
 Version:	1.03
-Release:	0.1
+Release:	1
 License:	BSD
 Group:		Libraries
 Source0:	https://git.sr.ht/~thestr4ng3r/gf-complete/archive/%{gitref}.tar.gz#/%{name}-%{version}.tar.gz
