@@ -12,7 +12,7 @@ Release:	0.1
 License:	BSD
 Group:		Libraries
 Source0:	https://git.sr.ht/~thestr4ng3r/gf-complete/archive/%{gitref}.tar.gz#/%{name}-%{version}.tar.gz
-# Source0-md5:	c60da1b2406225dea63bb9efd7400237
+# Source0-md5:	365f844eda38d2e369341bdfbbf05565
 Patch0:		opt.patch
 URL:		https://web.eecs.utk.edu/~jplank/plank/www/software.html
 BuildRequires:	autoconf
@@ -58,7 +58,7 @@ Static %{name} library.
 Statyczna biblioteka %{name}.
 
 %prep
-%setup -q -n %{name}-master
+%setup -q -n %{name}-%{gitref}
 %patch -P 0 -p1
 
 %build
